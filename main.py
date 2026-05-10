@@ -50,3 +50,46 @@ plt.grid(True)
 plt.tight_layout()
 plt.savefig("revenue_trend.png")
 print("Chart saved successfully as revenue_trend.png!")
+# Creating a Summary Dictionary
+summary_data = {
+    "Metric" : ["Gross Revenue", "Refunded Value", "Refunded Rate", "Total COGS", "Net Revenue", "Net Profit", "Net Margin"],
+    "Value" : [
+        Total_Gross_Revenue,
+        Total_Refunded_Value,
+        f"{Refund_Rate_Percentage:.2f}%",
+        Total_COGS_Value,
+        Net_Revenue,
+        Net_Profit,
+        f"{Net_Margin:.2f}%"
+    ]
+}
+
+# Converting it into a Pandas DataFrame
+summary_df = pd.DataFrame(summary_data)
+print("\nFinal Summary Table:")
+print(summary_df)
+
+# Exporting it into Excel
+summary_df.to_excel('Financial_Report.xlsx',index=False)
+
+# Formating and Polish of Report
+from openpyxl.drawing.image import Image
+# 1. Exporting the DataFrame to Excel, using the openpyxl engine
+writer = pd.ExcelWriter('Financial_Report.xlsx', engine='openpyxl')
+summary_df.to_excel(writer, sheet_name='Financial Summary', index=False)
+# 2. Getting the specific worksheet so we can modify it
+workbook = writer.book
+worksheet = writer.sheets['Financial Summary']
+# 3. Adjusting the column widths so the text isn't squished
+worksheet.column_dimensions['A'].width = 20
+worksheet.column_dimensions['B'].width = 20
+
+# 4. Inserting the Matplotlib chart we saved earlier
+# We load the image file, and put in excel(E2)
+img = Image('revenue_trend.png')
+worksheet.add_image(img, 'E2')
+
+# 5. Saving the final Formatting workbook
+writer.close()
+print("Excel Report with Chart Generated Successfully!")
+
