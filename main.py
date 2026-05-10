@@ -1,5 +1,5 @@
 import pandas as pd
-
+import matplotlib.pyplot as plt
 
 df = pd.read_csv("MOCK_DATA.csv", parse_dates=["order_date"])
 df = df.dropna(subset=['order_id'])
@@ -40,3 +40,13 @@ print(Monthy_Revenue)
 mom_growth = Monthy_Revenue.pct_change() *100
 print("Month-Over-Month Growth:")
 print(mom_growth)
+# Creating the line Chart
+Monthy_Revenue.plot(kind='line', marker='o', color='blue', figsize=(10,5))
+plt.title("Monthly Gross Revenue Trend")
+plt.xlabel("Month")
+plt.ylabel("Gross Revneue (€)")
+plt.grid(True) 
+#Export as an image to put in Excel Report
+plt.tight_layout()
+plt.savefig("revenue_trend.png")
+print("Chart saved successfully as revenue_trend.png!")
