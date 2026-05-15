@@ -2,14 +2,14 @@
 ## The Problem
 Most Online store owners spend 6–8 hours every month manually exporting data, building spreadsheets, and calculating margins, time that should go toward growing the business. One wrong formula means a wrong financial decision.
 ## The Solution
-Automated P&L Report in less 5then 15 mins for Raw data given in Excel Format.
+Generates a full P&L report in under 15 minutes from raw CSV data.
 ## Output
 <img width="1627" height="997" alt="image" src="https://github.com/user-attachments/assets/4f5bb4d6-79f4-4f5a-ab3b-33d9df65f004" />
 
 ## Key Metrics Generated
 It Generates the following Matrics:
 - Gross Revenue
-- Net Margin
+- Refunded Value
 - Refunded Rate
 - Total COGS
 - Net Revenue
